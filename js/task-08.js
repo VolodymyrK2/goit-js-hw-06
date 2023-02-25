@@ -3,16 +3,15 @@ formEl.addEventListener("submit", handleSubmit);
 function handleSubmit(event) {
     event.preventDefault();
     const { elements: { email, password } } = event.currentTarget;
-    if (email.value === "" || password.value === "") {
+    const result = {
+        email: email.value.trim(),
+        password: password.value.trim()
+    }
+        if (result.email === "" || result.password === "") {
         alert("Please fill in all fields!");
     } else {
-        const result = {
-        email: email.value,
-        password: password.value
-    }
-    console.log(`Email: ${email.value}, Password: ${password.value}`);
-        event.currentTarget.reset();
-        return result;
+            console.log(result);
+            event.currentTarget.reset();
     }
 }
 

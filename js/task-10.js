@@ -1,20 +1,31 @@
 const WIDTH_BOX = 30;
 const HEIGTH_BOX = 30;
 const STEP_SIZE = 10;
+ let width = WIDTH_BOX;
+  let height = HEIGTH_BOX;
 let amountBoxes = 0;
 const inputEl = document.querySelector('input');
 const btnCreate = document.querySelector('button[data-create]');
 const btnDestroy = document.querySelector('button[data-destroy]');
 const boxesEl = document.querySelector('#boxes');
-inputEl.addEventListener('input', (event) => {
-  amountBoxes = event.currentTarget.value;
+inputEl.addEventListener('input', () => {
+  amountBoxes = inputEl.value;
+   if (amountBoxes > 100 || amountBoxes < 0) {
+    alert("Введіть число в діапазоні від 1 до 100");
+    inputEl.value = "";
+    amountBoxes = 0;
+  }
 });
+ 
 btnCreate.addEventListener('click', () => createBox(amountBoxes));
-btnDestroy.addEventListener('click', () => boxesEl.innerHTML = ""
-);
+btnDestroy.addEventListener('click', () => {
+  inputEl.value ="";
+  boxesEl.innerHTML = ""
+  width = WIDTH_BOX;
+  height = HEIGTH_BOX;
+});
 function createBox(amount) {
-  let width = WIDTH_BOX;
-  let height = HEIGTH_BOX;
+  
   const boxes = [];
   for (let i = 0; i < amount; i++){
     const box = document.createElement("div");
